@@ -1,6 +1,6 @@
 $(function () {
   const amenStor = {};
-  $('LI INPUT[type=checkbox').change(function (event) {
+  $(':checkbox').change(function (event) {
     let amenId = $(this).attr('data-id');
     let amenName = $(this).attr('data-name');
     if (this.checked) {
@@ -23,15 +23,9 @@ $(function () {
         amenStr += ', ' + amenStor[key];
       }
     }
-    if (amenStr.length > 30) {
-      amenStr = amenStr.slice(0, 29);
-      amenStr += '...';
-    }
     $('.amenities h4').text(amenStr);
   });
-});
 
-$(function () {
   $.ajax({
     url: 'http://0.0.0.0:5001/api/v1/status/',
     type: 'GET',
