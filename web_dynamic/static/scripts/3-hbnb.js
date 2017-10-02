@@ -23,24 +23,8 @@ $(function () {
         amenStr += ', ' + amenStor[key];
       }
     }
-    if (amenStr.length > 30) {
-      amenStr = amenStr.slice(0, 29);
-      amenStr += '...';
-    }
     $('.amenities h4').text(amenStr);
   });
-
-  $.ajax({
-    url: 'http://0.0.0.0:5001/api/v1/status/',
-    type: 'GET',
-    success: function (data) {
-      $('#api_status').addClass('available');
-    },
-    error: function (e) {
-      $('#api_status').removeClass('available');
-    }
-  });
-
   $.ajax({
     url: 'http://0.0.0.0:5001/api/v1/places_search',
     type: 'POST',
@@ -57,4 +41,26 @@ $(function () {
       console.log('Failed response');
     }
   });
+  statusAPI();
+  // $.ajax({
+  //   url: 'http://0.0.0.0:5001/api/v1/status/',
+  //   type: 'GET',
+  //   success: function (data) {
+  //     $('#api_status').addClass('available');
+  //   },
+  //   error: function (e) {
+  //     $('#api_status').removeClass('available');
+  //   }
+  // });
 });
+
+// refactor of check API status for Task 3
+function statusAPI () {
+  $.getJSON('http://localhost:5001/api/v1/status/', (data) => {
+    if (data.status === 'OK') {
+      $('div#api_status').addClass('available');
+    } else {
+      $('div#api_status').removeClass('available');
+    }
+  });
+}
