@@ -52,6 +52,13 @@ $(function () {
   //     $('#api_status').removeClass('available');
   //   }
   // });
+  $('section button').click(function () {
+    const amenIDs = [];
+    for (let item in dict) {
+      amenIDs.push(item);
+    }
+    fetchPlaces(users, amenIDs);
+  });
 });
 
 // refactor of check API status for Task 3
