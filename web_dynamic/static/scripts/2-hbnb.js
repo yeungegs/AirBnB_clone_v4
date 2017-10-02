@@ -31,10 +31,15 @@ $(function () {
   });
 });
 
-$.get('http://0.0.0.0:5001/api/v1/status', function (data, textStatus) {
-  if (textStatus === 'success') {
-    $('#api_status').addClass('available');
-  } else {
-    $('#api_status').removeClass('available');
-  }
+$(function () {
+  $.ajax({
+    url: 'http://0.0.0.0:5001/api/v1/status/',
+    type: 'GET',
+    success: function (data) {
+      $('#api_status').addClass('available');
+    },
+    error: function (e) {
+      $('#api_status').removeClass('available');
+    }
+  });
 });
