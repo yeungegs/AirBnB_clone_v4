@@ -34,7 +34,6 @@ $(function () {
     const amenIDs = [];
     for (let item in amenStor) {
       amenIDs.push(item);
-      console.log(amenIDs);
       searchPlaces(amenIDs);
     }
   });
@@ -45,9 +44,9 @@ function searchPlaces () {
   $.ajax({
     url: 'http://0.0.0.0:5001/api/v1/places_search',
     type: 'POST',
+    contentType: 'application/json',
     data: '{}',
     dataType: 'json',
-    contentType: 'application/json',
     success: function (data) {
       console.log(data);
       for (let obj of data) {
@@ -62,7 +61,7 @@ function searchPlaces () {
 
 // refactor of check API status for Task 3
 function statusAPI () {
-  $.getJSON('http://localhost:5001/api/v1/status/', (data) => {
+  $.getJSON('http://localhost:5001/api/v1/status/', function(data) {
     if (data.status === 'OK') {
       $('div#api_status').addClass('available');
     } else {
