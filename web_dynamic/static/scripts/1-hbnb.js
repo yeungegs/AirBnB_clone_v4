@@ -23,10 +23,6 @@ $(function () {
         amenStr += ', ' + amenStor[key];
       }
     }
-    if (amenStr.length > 30) {
-      amenStr = amenStr.slice(0, 29);
-      amenStr += '...';
-    }
     $('.amenities h4').text(amenStr);
   });
 });
