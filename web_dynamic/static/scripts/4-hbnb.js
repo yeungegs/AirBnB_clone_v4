@@ -26,12 +26,12 @@ $(function () {
     $('.amenities h4').text(amenStr);
   });
 
-  const amenIDs = [];
+  let amenIDs = [];
   $('section button').click(function () {
     for (let item in amenStor) {
       amenIDs.push(item);
-      searchPlaces(amenIDs);
     }
+    searchPlaces(amenIDs);
   });
   searchPlaces(amenIDs);
   // search places
