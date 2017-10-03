@@ -25,6 +25,23 @@ $(function () {
     }
     $('.amenities h4').text(amenStr);
   });
+
+  searchPlaces();
+
+  statusAPI();
+
+  $('section button').click(function () {
+    const amenIDs = [];
+    for (let item in amenStor) {
+      amenIDs.push(item);
+      console.log(amenIDs);
+      searchPlaces(amenIDs);
+    }
+  });
+});
+
+// search places
+function searchPlaces () {
   $.ajax({
     url: 'http://0.0.0.0:5001/api/v1/places_search',
     type: 'POST',
@@ -41,25 +58,7 @@ $(function () {
       console.log('Failed response');
     }
   });
-  statusAPI();
-  // $.ajax({
-  //   url: 'http://0.0.0.0:5001/api/v1/status/',
-  //   type: 'GET',
-  //   success: function (data) {
-  //     $('#api_status').addClass('available');
-  //   },
-  //   error: function (e) {
-  //     $('#api_status').removeClass('available');
-  //   }
-  // });
-  $('section button').click(function () {
-    const amenIDs = [];
-    for (let item in dict) {
-      amenIDs.push(item);
-    }
-    fetchPlaces(users, amenIDs);
-  });
-});
+}
 
 // refactor of check API status for Task 3
 function statusAPI () {
