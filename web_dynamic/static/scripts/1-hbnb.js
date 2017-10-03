@@ -1,6 +1,6 @@
 $(function () {
   const amenStor = {};
-  $('LI INPUT[type=checkbox').change(function (event) {
+  $(':checkbox').change(function (event) {
     let amenId = $(this).attr('data-id');
     let amenName = $(this).attr('data-name');
     if (this.checked) {
